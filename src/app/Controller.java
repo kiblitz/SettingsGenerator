@@ -1,20 +1,19 @@
 package app;
 
-import animatefx.animation.*;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.event.EventTarget;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
+import javafx.stage.StageStyle;
 
 public class Controller {
 
@@ -48,6 +47,7 @@ public class Controller {
     private Mouse mouse;
     private Offset offset;
     private TitleButtons titleButtons;
+    private boolean confirmCloseOpen = false;
 
     public Mouse getMouse() {
         return mouse;
@@ -121,7 +121,23 @@ public class Controller {
 
     @FXML
     public void onCloseClicked(MouseEvent mouseEvent) {
-        System.exit(0);
+        if(!confirmCloseOpen)
+            try {
+                Stage primaryStage = (Stage) background.getScene().getWindow();
+                Parent root = FXMLLoader.load(getClass().getResource("close-confirm.fxml"));
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.TRANSPARENT);
+                Scene scene = new Scene(root);
+                scene.setFill(Color.TRANSPARENT);
+                stage.setScene(scene);
+                stage.initOwner(primaryStage);
+                stage.setOnCloseRequest(eventHandler -> confirmCloseOpen = false);
+                stage.show();
+                confirmCloseOpen = true;
+            } catch(Exception e) {
+                e.printStackTrace();
+                System.exit(0);
+            }
     }
 
 }
