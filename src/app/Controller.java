@@ -1,10 +1,12 @@
 package app;
 
+import animatefx.animation.*;
 import javafx.event.EventTarget;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -58,6 +60,18 @@ public class Controller {
         mouse = new Mouse();
         offset = new Offset();
         titleButtons = new TitleButtons();
+        Image closeImage = new Image(getClass().getResource("resources/close.png").toExternalForm());
+        Image minimizeImage = new Image(getClass().getResource("resources/minimize.png").toExternalForm());
+        Image uploadImage = new Image(getClass().getResource("resources/download.png").toExternalForm());
+        Image forwardImage = new Image(getClass().getResource("resources/right.png").toExternalForm());
+        Image backImage = new Image(getClass().getResource("resources/left.png").toExternalForm());
+        close.setImage(new RecoloredImaged(closeImage, Color.web("#000000"), Color.web("#9f9f9f")).getImage());
+        minimize.setImage(new RecoloredImaged(minimizeImage, Color.web("#000000"), Color.web("#9f9f9f")).getImage());
+        upload.setImage(new RecoloredImaged(uploadImage, Color.web("#000000"), Color.web("#9f9f9f")).getImage());
+        forward.setImage(new RecoloredImaged(forwardImage, Color.web("#000000"), Color.web("#9f9f9f")).getImage());
+        back.setImage(new RecoloredImaged(backImage, Color.web("#000000"), Color.web("#9f9f9f")).getImage());
+        AnimationFX fx = new FadeIn(background);
+        fx.play();
     }
 
     @FXML
@@ -116,7 +130,8 @@ public class Controller {
 
     @FXML
     public void onMinimizeClicked(MouseEvent mouseEvent) {
-        ((Stage) background.getScene().getWindow()).setIconified(true);
+        Stage stage = (Stage) background.getScene().getWindow();
+        stage.setIconified(true);
     }
 
     @FXML
@@ -131,9 +146,9 @@ public class Controller {
                 scene.setFill(Color.TRANSPARENT);
                 stage.setScene(scene);
                 stage.initOwner(primaryStage);
-                stage.setOnCloseRequest(eventHandler -> confirmCloseOpen = false);
-                stage.show();
+                stage.setOnHidden(eventHandler -> confirmCloseOpen = false);
                 confirmCloseOpen = true;
+                stage.show();
             } catch(Exception e) {
                 e.printStackTrace();
                 System.exit(0);
