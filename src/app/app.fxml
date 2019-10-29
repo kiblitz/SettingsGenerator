@@ -9,12 +9,12 @@
     <Region prefHeight="50.0" prefWidth="25.0" />
     <ImageView fx:id="forward" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onForwardClicked" pickOnBounds="true" preserveRatio="true" />
     <Region prefHeight="50.0" prefWidth="25.0" />
-    <ImageView fx:id="upload" fitHeight="50.0" fitWidth="50.0" onMouseDragged="#onUploadClicked" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="download" fitHeight="50.0" fitWidth="50.0" onMouseDragged="#onDownloadClicked" pickOnBounds="true" preserveRatio="true" />
     <Region prefHeight="50.0" prefWidth="25.0" />
     <ImageView fx:id="minimize" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onMinimizeClicked" pickOnBounds="true" preserveRatio="true" />
     <Region prefHeight="50.0" prefWidth="25.0" />
     <ImageView fx:id="close" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCloseClicked" pickOnBounds="true" preserveRatio="true" />
   </HBox>
-  <Region fx:id="gap" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="500.0" VBox.vgrow="ALWAYS" />
+  <Region maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="500.0" VBox.vgrow="ALWAYS" />
   <AnchorPane fx:id="content" prefHeight="464.0" prefWidth="500.0" style="-fx-background-color: #3D4956&#10;" VBox.vgrow="ALWAYS" />
 </VBox>

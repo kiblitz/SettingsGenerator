@@ -11,7 +11,7 @@
       xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="app.CloseConfirm">
     <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0"
             prefWidth="200.0"/>
-    <Label alignment="TOP_CENTER" style="&#10;&#10;" text="ARE YOU SURE?"
+    <Label fx:id="confirmationText" alignment="TOP_CENTER" style="&#10;&#10;" text="ARE YOU SURE?"
            textFill="#808080" VBox.vgrow="ALWAYS">
         <font>
             <Font name="System Bold" size="16.0"/>
